@@ -51,3 +51,22 @@ def create_windows(data: np.ndarray, window_size: int = 50) -> Tuple[np.ndarray,
         X.append(data[i:i + window_size])
         y.append(data[i + window_size])
     return np.array(X, dtype=np.float32), np.array(y, dtype=np.float32)
+
+import matplotlib.pyplot as plt
+
+def plot_predictions(actual: np.ndarray, predicted: np.ndarray, title: str = "Actual vs Predicted Oscillations"):
+    plt.figure(figsize=(10, 6))
+    plt.plot(actual, label='Actual', color='blue', linewidth=2)
+    plt.plot(range(len(actual)-len(predicted), len(actual)), predicted, 
+             label='Predicted', color='orange', linestyle='--', linewidth=2.5)
+    plt.title(title)
+    plt.xlabel('Time Step')
+    plt.ylabel('Normalized Value (or USD)')
+    plt.legend()
+    plt.grid(True, alpha=0.3)
+    plt.tight_layout()
+    try:
+        plt.show()
+    except Exception:
+        # Headless environment: save to file
+        plt.savefig("predictions_plot.png")

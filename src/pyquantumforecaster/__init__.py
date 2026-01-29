@@ -1,4 +1,4 @@
 from .core import QuantumForecaster, train_model, predict_next
-from .utils import generate_sine_data, create_windows, load_crypto_data
+from .utils import generate_sine_data, create_windows, load_crypto_data, plot_predictions
 
 __version__ = "0.1.0"
